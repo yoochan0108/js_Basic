@@ -9,15 +9,14 @@
 
 <body>
   <script>
-    /*
-     전개연산자 (Spread Operator)
-     -기존의 참조형 자료를 값을 다 꺼내서 펼친뒤 deep copy
-   */
-    let colors = ['red', 'green', 'blue'];
-    let colors2 = [...colors];  //기존의 참조형 자료값을 꺼내서 deep copy한 다음에 새로운 변수에 할당
-    colors2[0] = 'hotpink';
-    console.log('colors2', colors);
-    console.log('colors', colors2);
+    let name = 'abc';
+
+    //es7에서의 새로운 문법: 객체의 property key값을 변수로 치환가능
+    const obj = {
+      [name]: 'Andy'
+    }
+
+    console.log(obj.name1);
   </script>
 </body>
 
