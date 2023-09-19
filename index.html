@@ -8,30 +8,59 @@
 </head>
 
 <body>
+  <ul>
+    <li>list1</li>
+    <li>list2</li>
+    <li>list3</li>
+  </ul>
   <script>
-    const studentInfo = [
-      { name: 'David', age: 20, hobby: "game" },
-      { name: 'Emily', age: 22, hobby: "movie" },
-      { name: 'Michael', age: 18 }
-    ];
-    //parameter:(메개변수): 함수안쪽에 특정 값을 전달하기 위한 통로명
-    //argunemt:(인수): 매개변수를 통해서 실제적으로 전달되는 값
-    //파라미터의 인수값으로 전달되는 값이 없을때 default parameter설정가능
-    //전달되는 인수 값은 객체 하나인데 객체안의 property값을 추출해서 내부로 전달
-    function showInfo({ name, age, hobby = '없음' }) {
-      console.log(`해당학생의 이름은 ${name}이며 나이는 ${age}입니다. 그리고 취미는 ${hobby}입니다.`)
-    }
+    const lis = document.querySelectorAll('li');
+    console.log(lis);
 
-    //총 3개의 인수가 전달
-    function showInfo({ name, age, hobby = '없음' }) {
-      console.log(`해당학생의 이름은 ${name}이며 나이는 ${age}입니다. 그리고 취미는 ${hobby}입니다.`)
-    }
+    lis.forEach((data) => {
+      console.log(data);
+    })
 
-    showInfo2('Andy', 30, 'music')
+    lis.map((data) => {
+      console.log(data);
+    })
 
-    showInfo(studentInfo[0]);
-    showInfo(studentInfo[1]);
-    showInfo(studentInfo[2]);
+
+
+    /*
+      forEach vs map
+    */
+    const colors = ['red', 'green', 'blue'];
+    const rabbit = ['루토끼', '지토끼', '유토끼'];
+
+    //반복기능만 있음
+    const result1 = colors.forEach((data, index) => {
+      console.log(data);
+      console.log(index);
+    })
+    console.log(result1);
+
+    //반복기능 + 기본배열을 deep copy반환
+    //map은 기존의 원본 배열을 훼손시키지 않으면서 새로운 배열을 반환하는 불변성 유지 가능
+    const result2 = colors.map((data, index) => {
+      console.log(data);
+      console.log(index);
+      return data;
+    })
+    console.log(result2);
+    result2[0] = 'hotpink';
+
+    console.log(result2);
+    console.log(colors);
+
+    const result3 = rabbit.map((data, index) => {
+      console.log(data);
+      console.log(index);
+      return data;
+    })
+    console.log(result3);
+    result3[0] = '이토끼';
+    console.log(result3);
 
   </script>
 </body>
