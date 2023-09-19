@@ -27,8 +27,10 @@
       address: 'Seoul'
     }
 
-    const { name, age, address } = student1;
-    console.log(name);
+    const { name, age: age2, address } = student1;
+    //객체값을 비구조화 할당시에는 무조건 property key명으로만 변수 추출 가능
+    //객체의 property명이 아닌 다른 변수로 추출가능
+    console.log(age2);
 
   </script>
 </body>
