@@ -5,32 +5,40 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    li {
+      color: gray;
+      cursor: pointer;
+    }
+
+    li.on {
+      color: hotpink;
+    }
+  </style>
 </head>
 
 <body>
   <ul class="btns">
-    <li>button1</li>
+    <li class="on">button1</li>
     <li>button2</li>
     <li>button3</li>
   </ul>
+
   <script>
     const btns = document.querySelectorAll('.btns li');
 
-    const handler = () => {
-      console.log('test')
+    //인수로 활성화시킨 순번을 전달받고
+    const activation = (arr, index) => {
+      //일단 모든 버튼을 반복돌면서 비활성화 (초기화)
+      btns.forEach(el => el.classList.remove('on'))
+      //인수로 받은 index순번의 버튼만 활성화
+      btns[index].classList.add('on')
     }
-
-    const handlerText = (text) => {
-      console.log(text);
-      return text;
-    }
-
-    //es6
-    //이벤트 발생시 호출할 함수에 인수를 전달할 필요가 없을떄
-    btns[0].addEventListener('click', handler)
-    //이벤트 발생시 호출할 함수에 인수를 전달해야 될때 다시 화살표함수로 wrapping처리
-    btns[1].addEventListener('click', () => handlerText('hello'))
-
+    //버튼을 반복돌면서 이벤트 연결
+    btns.forEach((btn, idx) => {
+      //이벤트가 발생하면 activation함수 호출하면서 클릭한 버튼의 순번을 인수로 전달
+      btn.addEventListener('click', () => activation(btns, idx))
+    })
 
 
   </script>
