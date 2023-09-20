@@ -8,46 +8,33 @@
 </head>
 
 <body>
-
+  <ul class="btns">
+    <li>button1</li>
+    <li>button2</li>
+    <li>button3</li>
+  </ul>
   <script>
-    //hoisting : 메모리를 선언하지 않고 값도할당하지 않았음에도 불구하고
-    //선언되지 않는 메모리를 호출했을때 해당 값이 맨위로 강제로 끌어올라가져서 값을 호출할수 있는 현상
-    //일반적인 function함수는 호출위피가 자유로움
-    // const result = plus(3, 4)
-    // console.log(result);
-
-    function plus(n1, n2) {
-      console.log(n1 + n2);
-      return n1 + n2
-    }
-
-
+    const btns = document.querySelectorAll('.btns li');
+    //es6
     /*
-    const minus = (n1, n2) => {
-      console.log(n1 - n2);
-      return n1 - n2
-    }
+    btns.forEach(btn => {
+      //화살표함수 안쪽의 this객체는 무조건 윈도우 객체가 찍힘
+      //화살표함수 안쪽애서는 this객체가 아예 생성이 안됨
+      //코드블록안쪽에서 this객체가 없을떄에는 상위스코프에 있는 값을 끌어옴
+      btn.addEventListener('click', (e) => {
+        // console.log(btn);
+        console.log(this)
+      })
+    })
     */
-    //화살표 함수에서 중괄호와 return은 생략가능
-    //인수로 2개의 값을 받아서 연산한다음에 리턴하는 함수
-    //함수안쪽의 복수줄이상의 state문이 들어가게 되면 무조건 중괄호로 감싼뒤에 return문 처리
-    const minus = (n1, n2) => {
-      console.log(n1 - n2)
-      return n1 - n2
-    };
-
-    const result = minus(4, 2);
-    console.log(result);
-
-    const returnObject = (name, age) => {
-      return {
-        name: name,
-        age: age
-      }
-    }
-
-    const student1 = returnObject('David', 20);
-    console.log(student1);
+    //es5
+    btns.forEach(function (btn) {
+      // 일반 function문으로 이벤트헨들러 연결시 내부의 this객체는 이벤트가 발생한 대상을 지칭
+      // 기존의 function문은 호출되는 위치에 따라 내부에 생성되는 this의 값이 변경됨
+      btn.addEventListener('click', function (e) {
+        console.log(this)
+      }.bind(this))
+    })
   </script>
 </body>
 
