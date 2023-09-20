@@ -10,52 +10,44 @@
 <body>
 
   <script>
-    //for of : 문자를 반복처리
-    const text = 'DEVELOPMENT'; //es6이후부터는 문자값도 반복가능한 객체로 인식(이터러블 객체)
+    //hoisting : 메모리를 선언하지 않고 값도할당하지 않았음에도 불구하고
+    //선언되지 않는 메모리를 호출했을때 해당 값이 맨위로 강제로 끌어올라가져서 값을 호출할수 있는 현상
+    //일반적인 function함수는 호출위피가 자유로움
+    // const result = plus(3, 4)
+    // console.log(result);
 
-    for (let letter of text) {
-      console.log(letter);
-    }
-    //fot in : 객체의 key를 반복처리(es6)
-    const student = {
-      name: 'David',
-      age: 20,
-      address: 'Seoul',
-      hobby: 'game'
-    }
-    for (let key in student) {
-      //for in 반복문에서는 key값을 문자로 반복처리하기 때문에
-      //객체명.key호출 불가능
-      //객체명[key] 호출
-      console.log(student[key]);
+    function plus(n1, n2) {
+      console.log(n1 + n2);
+      return n1 + n2
     }
 
-    //es7
-    //Object.keys(객체명): 배열로 해당 객체의 key를 반환
-    //Object.values(객체명): 배열로 해당 객체의 value값을 반환
-    console.log(Object.keys(student))
-    console.log(Object.values(student))
 
-    //Object.keys로 반환된 배열값을 바로 반복처리
-    Object.keys(student).forEach(key => console.log(student[key]))
+    /*
+    const minus = (n1, n2) => {
+      console.log(n1 - n2);
+      return n1 - n2
+    }
+    */
+    //화살표 함수에서 중괄호와 return은 생략가능
+    //인수로 2개의 값을 받아서 연산한다음에 리턴하는 함수
+    //함수안쪽의 복수줄이상의 state문이 들어가게 되면 무조건 중괄호로 감싼뒤에 return문 처리
+    const minus = (n1, n2) => {
+      console.log(n1 - n2)
+      return n1 - n2
+    };
 
-    //filter : 기존 배열값의 불변성을 유지하면서 특정조건에 부합되는 새로운 배열을 반환
-    const studentDB = [
-      { mame: 'David', age: 20, 'hobby': 'game' },
-      { mame: 'Emily', age: 18, 'hobby': 'music ' },
-      { mame: 'peter', age: 20, }
-    ];
-    const result = studentDB.map((data) => {
-      return data.hobby;
-    })
-    console.log(result); // ['game', 'music','undefined']
+    const result = minus(4, 2);
+    console.log(result);
 
-    //filter의 인수로 조건식을 넣어서 
-    //해당 조건에 부합되는 값만 배열로 반환
-    const abc = result.filter(data => data !== undefined);
-    console.log(abc);
+    const returnObject = (name, age) => {
+      return {
+        name: name,
+        age: age
+      }
+    }
 
-
+    const student1 = returnObject('David', 20);
+    console.log(student1);
   </script>
 </body>
 
