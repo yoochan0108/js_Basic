@@ -29,6 +29,9 @@
 
     //인수로 활성화시킨 순번을 전달받고
     const activation = (arr, index) => {
+      const isOn = arr[index].classList.contains('on');
+      if (isOn) return;
+      console.log('activation');
       //일단 모든 버튼을 반복돌면서 비활성화 (초기화)
       btns.forEach(el => el.classList.remove('on'))
       //인수로 받은 index순번의 버튼만 활성화
